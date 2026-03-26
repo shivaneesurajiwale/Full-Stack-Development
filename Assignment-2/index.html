@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shivanee Surajiwale | Portfolio</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI", Arial, sans-serif;
+scroll-behavior:smooth;
+}
+
+/* WHOLE PAGE BACKGROUND */
+
+body{
+background:#e9ecff;
+color:#333;
+}
+
+/* NAVBAR */
+
+nav{
+display:flex;
+justify-content:center;
+align-items:center;
+padding:18px;
+background:white;
+box-shadow:0 3px 12px rgba(0,0,0,0.08);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+nav ul{
+list-style:none;
+display:flex;
+gap:30px;
+}
+
+nav a{
+text-decoration:none;
+color:#444;
+font-weight:600;
+font-size:16px;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#5a4bff;
+}
+
+/* HERO */
+
+.hero{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:80px 10%;
+background:linear-gradient(120deg,#6a11cb,#2575fc);
+color:white;
+}
+
+.hero-text{
+max-width:600px;
+}
+
+.hero h1{
+font-size:42px;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.hero img{
+width:200px;
+height:200px;
+object-fit:cover;
+border-radius:50%;
+border:6px solid white;
+box-shadow:0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* SECTIONS */
+
+section{
+padding:80px 10%;
+background:transparent;
+}
+
+/* SECTION TITLE */
+
+.section-title{
+font-size:30px;
+font-weight:700;
+margin-bottom:40px;
+color:#444;
+}
+
+/* CARDS */
+
+.card{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 6px 18px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+/* SKILLS */
+
+.skill{
+display:inline-block;
+background:#dfe3ff;
+padding:8px 14px;
+border-radius:6px;
+margin:6px;
+font-weight:600;
+}
+
+/* FOOTER */
+
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#certifications">Certifications</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<!-- HERO -->
+
+<div class="hero">
+
+<div class="hero-text">
+
+<h1>Shivanee Surajiwale</h1>
+
+<p><b>Third-Year Computer Engineering Student</b></p>
+
+<p>
+Motivated Computer Engineering student pursuing a minor in <b>Generative AI</b>.
+Skilled in <b>Python, C++, MySQL and Web Development</b>.
+</p>
+
+<p>
+📧 <b>surajiwaleshivanee@gmail.com</b><br>
+📞 <b>9607770245</b>
+</p>
+
+</div>
+
+<img src="profile.png">
+
+</div>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h2 class="section-title">About Me</h2>
+
+<div class="card">
+
+<p>
+I am a motivated Computer Engineering student with strong skills in
+<b>C, C++, Python and MySQL</b> along with knowledge of
+<b>Data Structures, Problem Solving and Web Development</b>.
+</p>
+
+<p>
+I also enjoy <b>UI/UX design, public speaking, event management and teamwork</b>.
+My goal is to build impactful technological solutions and work on innovative projects.
+</p>
+
+</div>
+
+</section>
+
+<!-- EDUCATION -->
+
+<section id="education">
+
+<h2 class="section-title">Education</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Pimpri Chinchwad College of Engineering</h3>
+<p><b>B.Tech Computer Engineering</b></p>
+<p>CGPA: <b>7.33</b></p>
+<p>2023 – 2027</p>
+</div>
+
+<div class="card">
+<h3>Unnati Junior College</h3>
+<p>HSC Science</p>
+<p><b>74.5%</b></p>
+<p>2021 – 2023</p>
+</div>
+
+<div class="card">
+<h3>Nirmala Convent High School</h3>
+<p>SSC</p>
+<p><b>90.40%</b></p>
+<p>2021</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- EXPERIENCE -->
+
+<section id="experience">
+
+<h2 class="section-title">Experience & Projects</h2>
+
+<div class="grid">
+
+<div class="card">Software Development & Testing Intern at BrainzHive Infotech Solutions</div>
+
+<div class="card">Participation in Internal Smart India Hackathon</div>
+
+<div class="card">Participation in Indradhanu Hackathon 2025</div>
+
+<div class="card">Design Team S.P.O.C at IEEE Eureka 2025</div>
+
+<div class="card">Design at PCCOE OWASP</div>
+
+<div class="card">Created Real Estate Management Website</div>
+
+<div class="card">AI Therapist Project for AI-driven Mental Health Support</div>
+
+<div class="card">Carbon Footprint Emission Tracker Project</div>
+
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 Shivanee Surajiwale | Personal Portfolio</p>
+</footer>
+
+</body>
+</html>
