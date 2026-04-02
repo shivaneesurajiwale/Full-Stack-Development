@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shivanee Surajiwale | Portfolio</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI", Arial, sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#e9ecff;
+color:#333;
+}
+
+nav{
+display:flex;
+justify-content:center;
+align-items:center;
+padding:18px;
+background:white;
+box-shadow:0 3px 12px rgba(0,0,0,0.08);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+nav ul{
+list-style:none;
+display:flex;
+gap:30px;
+}
+
+nav a{
+text-decoration:none;
+color:#444;
+font-weight:600;
+font-size:16px;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#5a4bff;
+}
+
+.hero{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:80px 10%;
+background:linear-gradient(120deg,#6a11cb,#2575fc);
+color:white;
+}
+
+.hero-text{
+max-width:600px;
+}
+
+.hero h1{
+font-size:42px;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.hero img{
+width:200px;
+height:200px;
+object-fit:cover;
+border-radius:50%;
+border:6px solid white;
+box-shadow:0 6px 20px rgba(0,0,0,0.3);
+}
+
+section{
+padding:80px 10%;
+}
+
+.section-title{
+font-size:30px;
+font-weight:700;
+margin-bottom:40px;
+color:#444;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 6px 18px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+.skill{
+display:inline-block;
+background:#dfe3ff;
+padding:8px 14px;
+border-radius:6px;
+margin:6px;
+font-weight:600;
+}
+
+/* BUTTON */
+button{
+padding:10px 18px;
+background:#5a4bff;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#3f36c7;
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+    };
+
+    const res = await fetch("http://localhost:5000/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    });
+
+    document.getElementById("responseMsg").innerText = "Message Sent!";
+});
+</script>
+
+<body>
+
+<nav>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<div class="hero">
+
+<div class="hero-text">
+
+<h1>Shivanee Surajiwale</h1>
+
+<p><b>Third-Year Computer Engineering Student</b></p>
+
+<p>
+Motivated student with skills in Python, C++, MySQL and Web Development.
+</p>
+
+<p>
+📧 surajiwaleshivanee@gmail.com<br>
+📞 9607770245
+</p>
+
+</div>
+
+<img src="profile.png">
+
+</div>
+
+<section id="about">
+<h2 class="section-title">About Me</h2>
+<div class="card">
+<p>
+Computer Engineering student with interest in AI, Web Development and problem solving.
+</p>
+</div>
+</section>
+
+<section id="education">
+<h2 class="section-title">Education</h2>
+<div class="grid">
+
+<div class="card">
+<h3>PCCOE</h3>
+<p>B.Tech Computer Engineering</p>
+<p>2023 – 2027</p>
+</div>
+
+<div class="card">
+<h3>Unnati Junior College</h3>
+<p>HSC Science</p>
+</div>
+
+</div>
+</section>
+
+<section id="experience">
+<h2 class="section-title">Projects</h2>
+<div class="grid">
+
+<div class="card">Real Estate Website</div>
+<div class="card">AI Therapist Project</div>
+<div class="card">Carbon Tracker</div>
+
+</div>
+</section>
+
+<!-- ✅ CONTACT SECTION (Backend Connected) -->
+
+<section id="contact">
+
+<h2 class="section-title">Contact Me</h2>
+
+<div class="card">
+
+<form id="contactForm">
+
+<input type="text" id="name" placeholder="Your Name" required><br><br>
+
+<input type="email" id="email" placeholder="Your Email" required><br><br>
+
+<textarea id="message" placeholder="Your Message" required></textarea><br><br>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+<p id="responseMsg"></p>
+
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 Shivanee Surajiwale</p>
+</footer>
+
+<!-- ✅ CONNECT TO BACKEND -->
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+    };
+
+    await fetch("http://localhost:5000/contact", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    document.getElementById("responseMsg").innerText = "Message Sent Successfully!";
+});
+</script>
+
+</body>
+</html>
