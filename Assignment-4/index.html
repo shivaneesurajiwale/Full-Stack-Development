@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Women Safety Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body id="body">
+
+    <h1>🚨 Women Safety Dashboard</h1>
+
+    <button onclick="toggleTheme()">🌗 Toggle Theme</button>
+
+    <div class="container">
+
+        <div class="card">
+            <h3>Alert Types</h3>
+            <canvas id="pieChart"></canvas>
+        </div>
+
+        <div class="card">
+            <h3>Alerts Over Time</h3>
+            <canvas id="lineChart"></canvas>
+        </div>
+
+        <div class="card">
+            <h3>Area Safety Score</h3>
+            <canvas id="barChart"></canvas>
+        </div>
+
+        <div class="card">
+            <h3>🚨 Report New Alert</h3>
+
+            <select id="alertType">
+                <option>Harassment</option>
+                <option>Theft</option>
+                <option>Unsafe Area</option>
+                <option>Emergency</option>
+            </select>
+
+            <br><br>
+
+            <button onclick="addAlert()">Add Alert</button>
+            <button onclick="simulateAlert()">Simulate Alert</button>
+        </div>
+
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
