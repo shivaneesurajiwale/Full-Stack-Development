@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,11 +23,13 @@ background:#e9ecff;
 color:#333;
 }
 
+/* NAVBAR */
+
 nav{
 display:flex;
 justify-content:center;
 align-items:center;
-padding:18px;
+padding:16px;
 background:white;
 box-shadow:0 3px 12px rgba(0,0,0,0.08);
 position:sticky;
@@ -37,14 +40,14 @@ z-index:1000;
 nav ul{
 list-style:none;
 display:flex;
-gap:30px;
+gap:25px;
 }
 
 nav a{
 text-decoration:none;
 color:#444;
 font-weight:600;
-font-size:16px;
+font-size:15px;
 transition:0.3s;
 }
 
@@ -52,11 +55,13 @@ nav a:hover{
 color:#5a4bff;
 }
 
+/* HERO */
+
 .hero{
 display:flex;
 align-items:center;
 justify-content:space-between;
-padding:80px 10%;
+padding:60px 10%;
 background:linear-gradient(120deg,#6a11cb,#2575fc);
 color:white;
 }
@@ -66,121 +71,121 @@ max-width:600px;
 }
 
 .hero h1{
-font-size:42px;
-font-weight:700;
+font-size:38px;
 margin-bottom:10px;
 }
 
 .hero img{
-width:200px;
-height:200px;
+width:180px;
+height:180px;
 object-fit:cover;
 border-radius:50%;
-border:6px solid white;
-box-shadow:0 6px 20px rgba(0,0,0,0.3);
+border:5px solid white;
 }
+
+/* SECTIONS */
 
 section{
-padding:80px 10%;
+padding:50px 10%;
+margin-bottom:10px;
 }
 
+/* SECTION TITLE */
+
 .section-title{
-font-size:30px;
-font-weight:700;
-margin-bottom:40px;
+font-size:28px;
+margin-bottom:25px;
 color:#444;
 }
 
+/* CARDS */
+
 .card{
 background:white;
-padding:25px;
+padding:20px;
 border-radius:12px;
 box-shadow:0 6px 18px rgba(0,0,0,0.1);
 transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-6px);
+transform:translateY(-5px);
 }
+
+/* GRID */
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
 }
+
+/* SKILLS */
 
 .skill{
 display:inline-block;
 background:#dfe3ff;
-padding:8px 14px;
+padding:8px 12px;
 border-radius:6px;
-margin:6px;
+margin:5px;
 font-weight:600;
+font-size:14px;
 }
 
-/* BUTTON */
-button{
-padding:10px 18px;
-background:#5a4bff;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
-}
-
-button:hover{
-background:#3f36c7;
-}
+/* FORM */
 
 input, textarea{
 width:100%;
 padding:10px;
 border-radius:6px;
 border:1px solid #ccc;
+margin-top:10px;
 }
+
+button{
+padding:10px 16px;
+background:#5a4bff;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+background:#3f36c7;
+}
+
+/* FOOTER */
 
 footer{
 background:#222;
 color:white;
 text-align:center;
-padding:20px;
-margin-top:40px;
+padding:18px;
+margin-top:20px;
 }
 
 </style>
 
 </head>
 
-<script>
-document.getElementById("contactForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const data = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        message: document.getElementById("message").value
-    };
-
-    const res = await fetch("http://localhost:5000/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-    });
-
-    document.getElementById("responseMsg").innerText = "Message Sent!";
-});
-</script>
-
 <body>
+
+<!-- NAVBAR -->
 
 <nav>
 <ul>
 <li><a href="#about">About</a></li>
 <li><a href="#education">Education</a></li>
 <li><a href="#experience">Experience</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#certifications">Certifications</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
+
+<!-- HERO -->
 
 <div class="hero">
 
@@ -191,12 +196,13 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
 <p><b>Third-Year Computer Engineering Student</b></p>
 
 <p>
-Motivated student with skills in Python, C++, MySQL and Web Development.
+Motivated Computer Engineering student pursuing a minor in <b>Generative AI</b>.
+Skilled in <b>Python, C++, MySQL and Web Development</b>.
 </p>
 
 <p>
-📧 surajiwaleshivanee@gmail.com<br>
-📞 9607770245
+📧 <b>surajiwaleshivanee@gmail.com</b><br>
+📞 <b>9607770245</b>
 </p>
 
 </div>
@@ -205,45 +211,115 @@ Motivated student with skills in Python, C++, MySQL and Web Development.
 
 </div>
 
+<!-- ABOUT -->
+
 <section id="about">
+
 <h2 class="section-title">About Me</h2>
+
 <div class="card">
+
 <p>
-Computer Engineering student with interest in AI, Web Development and problem solving.
+I am a motivated Computer Engineering student with strong skills in
+<b>C, C++, Python and MySQL</b> along with knowledge of
+<b>Data Structures, Problem Solving and Web Development</b>.
 </p>
+
+<p>
+I also enjoy <b>UI/UX design, public speaking, event management and teamwork</b>.
+My goal is to build impactful technological solutions.
+</p>
+
 </div>
+
 </section>
 
+<!-- EDUCATION -->
+
 <section id="education">
+
 <h2 class="section-title">Education</h2>
+
 <div class="grid">
 
 <div class="card">
-<h3>PCCOE</h3>
-<p>B.Tech Computer Engineering</p>
+<h3>Pimpri Chinchwad College of Engineering</h3>
+<p><b>B.Tech Computer Engineering</b></p>
+<p>CGPA: <b>7.33</b></p>
 <p>2023 – 2027</p>
 </div>
 
 <div class="card">
 <h3>Unnati Junior College</h3>
 <p>HSC Science</p>
+<p><b>74.5%</b></p>
+<p>2021 – 2023</p>
+</div>
+
+<div class="card">
+<h3>Nirmala Convent High School</h3>
+<p>SSC</p>
+<p><b>90.40%</b></p>
+<p>2021</p>
 </div>
 
 </div>
+
 </section>
+
+<!-- EXPERIENCE -->
 
 <section id="experience">
-<h2 class="section-title">Projects</h2>
+
+<h2 class="section-title">Experience & Projects</h2>
+
 <div class="grid">
 
+<div class="card">Software Development & Testing Intern</div>
+<div class="card">Smart India Hackathon Participant</div>
+<div class="card">Indradhanu Hackathon 2025</div>
+<div class="card">IEEE Eureka Design Team</div>
+<div class="card">OWASP PCCOE Design</div>
 <div class="card">Real Estate Website</div>
 <div class="card">AI Therapist Project</div>
-<div class="card">Carbon Tracker</div>
+<div class="card">Carbon Tracker Project</div>
 
 </div>
+
 </section>
 
-<!-- ✅ CONTACT SECTION (Backend Connected) -->
+<!-- SKILLS -->
+
+<section id="skills">
+
+<h2 class="section-title">Skills</h2>
+
+<div class="card">
+<span class="skill">C</span>
+<span class="skill">C++</span>
+<span class="skill">Python</span>
+<span class="skill">MySQL</span>
+<span class="skill">Web Development</span>
+<span class="skill">Data Structures</span>
+</div>
+
+</section>
+
+<!-- CERTIFICATIONS -->
+
+<section id="certifications">
+
+<h2 class="section-title">Certifications</h2>
+
+<div class="grid">
+<div class="card">Generative AI Course</div>
+<div class="card">Web Development Certification</div>
+<div class="card">Python Certification</div>
+</div>
+
+</section>
+
+<!-- CONTACT -->
 
 <section id="contact">
 
@@ -253,11 +329,11 @@ Computer Engineering student with interest in AI, Web Development and problem so
 
 <form id="contactForm">
 
-<input type="text" id="name" placeholder="Your Name" required><br><br>
+<input type="text" id="name" placeholder="Your Name" required>
 
-<input type="email" id="email" placeholder="Your Email" required><br><br>
+<input type="email" id="email" placeholder="Your Email" required>
 
-<textarea id="message" placeholder="Your Message" required></textarea><br><br>
+<textarea id="message" placeholder="Your Message" required></textarea>
 
 <button type="submit">Send Message</button>
 
@@ -269,11 +345,13 @@ Computer Engineering student with interest in AI, Web Development and problem so
 
 </section>
 
+<!-- FOOTER -->
+
 <footer>
-<p>© 2026 Shivanee Surajiwale</p>
+<p>© 2026 Shivanee Surajiwale | Portfolio</p>
 </footer>
 
-<!-- ✅ CONNECT TO BACKEND -->
+<!-- BACKEND -->
 
 <script>
 document.getElementById("contactForm").addEventListener("submit", async (e) => {
@@ -285,17 +363,22 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
         message: document.getElementById("message").value
     };
 
-    await fetch("http://localhost:5000/contact", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    });
+    try {
+        await fetch("http://localhost:5000/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
 
-    document.getElementById("responseMsg").innerText = "Message Sent Successfully!";
+        document.getElementById("responseMsg").innerText = "Message Sent Successfully!";
+    } catch (err) {
+        document.getElementById("responseMsg").innerText = "Error sending message!";
+    }
 });
 </script>
 
 </body>
 </html>
+```
