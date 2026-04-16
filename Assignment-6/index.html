@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Souled Store</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announce-bar">
+    FREE SHIPPING on orders above ₹499 &nbsp;|&nbsp; Easy 30-Day Returns &nbsp;|&nbsp; COD Available
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="logo">
+        <span class="logo-box">S</span>
+        <span class="logo-text">THE SOULED STORE</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#shop?category=Men" class="nav-item">Men</a>
+        <a href="#shop?category=Women" class="nav-item">Women</a>
+        <a href="#shop?category=Footwear" class="nav-item">Footwear</a>
+        <a href="#shop?category=Kids" class="nav-item">Kids</a>
+        <a href="#shop?category=Sports" class="nav-item">Sports</a>
+        <a href="#shop?category=Accessories" class="nav-item">Accessories</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="searchToggle" title="Search">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <a href="#wishlist" class="icon-btn" id="wishBtn" title="Wishlist">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="badge" id="wishBadge" style="display:none">0</span>
+        </a>
+        <a href="#cart" class="icon-btn" id="cartBtn" title="Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="badge" id="cartBadge" style="display:none">0</span>
+        </a>
+        <button class="hamburger" id="menuToggle">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search bar -->
+    <div class="search-bar" id="searchBar" style="display:none">
+      <div class="nav-inner">
+        <input type="search" id="searchInput" placeholder="Search for tops, kurtas, shoes..." class="search-input" />
+        <button class="btn-orange" id="searchBtn">Search</button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu" style="display:none">
+      <a href="#shop?category=Men" class="mob-link">Men</a>
+      <a href="#shop?category=Women" class="mob-link">Women</a>
+      <a href="#shop?category=Footwear" class="mob-link">Footwear</a>
+      <a href="#shop?category=Kids" class="mob-link">Kids</a>
+      <a href="#shop?category=Sports" class="mob-link">Sports</a>
+      <a href="#shop?category=Accessories" class="mob-link">Accessories</a>
+    </div>
+  </header>
+
+  <!-- Page container -->
+  <main id="app"></main>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" style="display:none">
+    <button class="lightbox-close" id="lightboxClose">&#x2715;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="Product" />
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
