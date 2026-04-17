@@ -3,32 +3,39 @@ function CourseFeedbackForm({ course, onCancel, onSubmit }) {
     const [hoverRating, setHoverRating] = React.useState(0);
     const [feedback, setFeedback] = React.useState('');
     const [submitted, setSubmitted] = React.useState(false);
+    const [isSubmitting, setIsSubmitting] = React.useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             if (rating === 0) {
                 alert('Please select a star rating.');
                 return;
             }
-            
-            // Save to localStorage simulation
-            const allFeedback = JSON.parse(localStorage.getItem('ce_course_feedback') || '[]');
-            allFeedback.push({
-                courseId: course.id,
-                courseName: course.name,
-                rating,
-                feedback,
-                timestamp: new Date().toISOString()
+
+            setIsSubmitting(true);
+            const prn = localStorage.getItem('ce_logged_in_prn');
+            await apiRequest('/feedback/course', {
+                method: 'POST',
+                body: JSON.stringify({
+                    prn,
+                    courseId: course.id,
+                    courseName: course.name,
+                    faculty: course.faculty,
+                    rating,
+                    feedback
+                })
             });
-            localStorage.setItem('ce_course_feedback', JSON.stringify(allFeedback));
 
             setSubmitted(true);
             setTimeout(() => {
                 onSubmit();
             }, 1500);
         } catch (error) {
+            alert(error.message || 'Unable to submit course feedback.');
             console.error('Submit error:', error);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -119,9 +126,10 @@ function CourseFeedbackForm({ course, onCancel, onSubmit }) {
                         </button>
                         <button 
                             type="submit" 
-                            className="btn-primary px-8"
+                            className="btn-primary px-8 disabled:opacity-70"
+                            disabled={isSubmitting}
                         >
-                            Submit Feedback
+                            {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
                         </button>
                     </div>
                 </form>

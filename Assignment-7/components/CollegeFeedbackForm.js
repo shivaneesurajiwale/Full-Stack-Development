@@ -2,6 +2,7 @@ function CollegeFeedbackForm() {
     const [issueType, setIssueType] = React.useState('');
     const [comments, setComments] = React.useState('');
     const [submitted, setSubmitted] = React.useState(false);
+    const [isSubmitting, setIsSubmitting] = React.useState(false);
 
     const issues = [
         "Infrastructure",
@@ -13,7 +14,7 @@ function CollegeFeedbackForm() {
         "Other"
     ];
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             if (!issueType) {
@@ -25,14 +26,16 @@ function CollegeFeedbackForm() {
                 return;
             }
 
-            // Save to localStorage simulation
-            const allFeedback = JSON.parse(localStorage.getItem('ce_college_feedback') || '[]');
-            allFeedback.push({
-                issueType,
-                comments,
-                timestamp: new Date().toISOString()
+            setIsSubmitting(true);
+            const prn = localStorage.getItem('ce_logged_in_prn');
+            await apiRequest('/feedback/college', {
+                method: 'POST',
+                body: JSON.stringify({
+                    prn,
+                    issueType,
+                    comments
+                })
             });
-            localStorage.setItem('ce_college_feedback', JSON.stringify(allFeedback));
 
             setSubmitted(true);
             setTimeout(() => {
@@ -41,7 +44,10 @@ function CollegeFeedbackForm() {
                 setComments('');
             }, 2500);
         } catch (error) {
+            alert(error.message || 'Unable to submit college feedback.');
             console.error('Submit error:', error);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -94,9 +100,9 @@ function CollegeFeedbackForm() {
                     </div>
 
                     <div className="flex justify-end">
-                        <button type="submit" className="btn-primary px-8 py-2.5 flex items-center">
+                        <button type="submit" className="btn-primary px-8 py-2.5 flex items-center disabled:opacity-70" disabled={isSubmitting}>
                             <i className="icon-send mr-2 text-sm"></i>
-                            Submit to Administration
+                            {isSubmitting ? 'Submitting...' : 'Submit to Administration'}
                         </button>
                     </div>
                 </form>

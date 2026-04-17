@@ -2,8 +2,9 @@ function Login({ onLogin }) {
     const [prn, setPrn] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [error, setError] = React.useState('');
+    const [isLoading, setIsLoading] = React.useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             if (!prn.trim() || !password.trim()) {
@@ -14,11 +15,22 @@ function Login({ onLogin }) {
                 setError('PRN must be at least 5 characters long.');
                 return;
             }
-            // Simulate successful login
+
+            setIsLoading(true);
             setError('');
-            onLogin(prn);
+            const data = await apiRequest('/auth/login', {
+                method: 'POST',
+                body: JSON.stringify({
+                    prn: prn.trim(),
+                    password: password.trim()
+                })
+            });
+            onLogin(data.prn);
         } catch (err) {
+            setError(err.message || 'Unable to login.');
             console.error('Login error:', err);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -73,8 +85,8 @@ function Login({ onLogin }) {
                         </div>
                     </div>
 
-                    <button type="submit" className="btn-primary w-full mt-2">
-                        Login securely
+                    <button type="submit" className="btn-primary w-full mt-2 disabled:opacity-70" disabled={isLoading}>
+                        {isLoading ? 'Logging in...' : 'Login securely'}
                     </button>
                 </form>
             </div>
