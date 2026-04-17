@@ -140,6 +140,33 @@ function updateBadges() {
   if (wb) { wb.textContent = wl; wb.style.display = wl > 0 ? 'flex' : 'none'; }
 }
 
+// 📩 Newsletter Subscribe
+async function handleSubscribe() {
+  const emailInput = document.getElementById("emailInput"); // FIX
+  const email = emailInput.value;
+
+  if (!email) {
+    alert("Enter email");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3000/subscribe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email })
+    });
+
+    await res.json();
+    alert("Subscribed successfully 🎉");
+    emailInput.value = "";
+  } catch (err) {
+    console.log(err);
+    alert("Error subscribing");
+  }
+}
 // ── Toast ─────────────────────────────────────────────────────────
 let toastTimer = null;
 function showToast(msg) {
@@ -754,7 +781,7 @@ function renderCart() {
     </div>
     ${renderFooter()}`;
     return;
-  }
+    } }
 
   document.getElementById('app').innerHTML = `
   <div class="cart-wrap">
@@ -885,12 +912,39 @@ function renderCart() {
     }
   };
 
-  document.getElementById('placeOrder').onclick = () => {
-    showToast('Order placed successfully! 🎉');
-    clearCart(); appliedCode = null; promoDiscount = 0;
+  document.getElementById('placeOrder').onclick = async () => {
+  if (cart.length === 0) {
+    alert("Cart is empty");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3000/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        items: cart,
+        total: cartTotal()
+      })
+    });
+
+    await res.json();
+
+    showToast("Order placed successfully! 🎉");
+
+    clearCart();
+    appliedCode = null;
+    promoDiscount = 0;
+
     setTimeout(() => renderCart(), 300);
-  };
-}
+
+  } catch (err) {
+    console.log(err);
+    alert("Error placing order");
+  }
+};
 
 // ── Wishlist Page ─────────────────────────────────────────────────
 function renderWishlist() {
