@@ -141,7 +141,7 @@ node server.js
 
 ---
 
-##  Conclusion
+## git Conclusion
 
 This project demonstrates a basic full-stack e-commerce system with frontend interactivity and backend data handling. It highlights how user actions are processed and stored using REST APIs and MongoDB.
 

@@ -1,46 +1,43 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+
+const orderRoutes = require("./routes/order");
+const subscribeRoutes = require("./routes/subscribe");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// MongoDB connection
-mongoose.connect("mongodb://127.0.0.1:27017/souledStore")
-.then(() => console.log("MongoDB Connected"))
-.catch(err => console.log(err));
+// MongoDB Connection
+const mongoURI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/souledStore";
 
-// Models
-const Order = mongoose.model("Order", {
-  items: Array,
-  total: Number,
-});
-
-const Subscriber = mongoose.model("Subscriber", {
-  email: String,
+mongoose.connect(mongoURI, {
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+})
+.then(() => {
+  console.log("✅ MongoDB Connected");
+  console.log(`📍 Connected to: ${mongoURI}`);
+})
+.catch(err => {
+  console.error("❌ MongoDB Connection Failed:", err.message);
+  console.log("\n📝 To set up MongoDB locally:");
+  console.log("   Option 1: Use MongoDB Atlas (Cloud) - https://www.mongodb.com/cloud/atlas");
+  console.log("   Option 2: Install local MongoDB - https://docs.mongodb.com/manual/installation/");
+  console.log("\n   Or update MONGODB_URI in .env file with your connection string");
 });
 
 // Routes
-app.post("/order", async (req, res) => {
-  try {
-    const order = new Order(req.body);
-    await order.save();
-    res.json({ message: "Order saved" });
-  } catch (err) {
-    res.status(500).json({ error: err });
-  }
-});
+app.use("/api/order", orderRoutes);
+app.use("/api/subscribe", subscribeRoutes);
 
-app.post("/subscribe", async (req, res) => {
-  try {
-    const sub = new Subscriber(req.body);
-    await sub.save();
-    res.json({ message: "Subscribed" });
-  } catch (err) {
-    res.status(500).json({ error: err });
-  }
+// Test route
+app.get("/", (req, res) => {
+  res.send("Server Running");
 });
 
 app.listen(3000, () => {

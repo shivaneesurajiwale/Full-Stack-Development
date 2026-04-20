@@ -140,33 +140,6 @@ function updateBadges() {
   if (wb) { wb.textContent = wl; wb.style.display = wl > 0 ? 'flex' : 'none'; }
 }
 
-// 📩 Newsletter Subscribe
-async function handleSubscribe() {
-  const emailInput = document.getElementById("emailInput"); // FIX
-  const email = emailInput.value;
-
-  if (!email) {
-    alert("Enter email");
-    return;
-  }
-
-  try {
-    const res = await fetch("http://localhost:3000/subscribe", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email })
-    });
-
-    await res.json();
-    alert("Subscribed successfully 🎉");
-    emailInput.value = "";
-  } catch (err) {
-    console.log(err);
-    alert("Error subscribing");
-  }
-}
 // ── Toast ─────────────────────────────────────────────────────────
 let toastTimer = null;
 function showToast(msg) {
@@ -781,7 +754,7 @@ function renderCart() {
     </div>
     ${renderFooter()}`;
     return;
-    } }
+  }
 
   document.getElementById('app').innerHTML = `
   <div class="cart-wrap">
@@ -913,38 +886,36 @@ function renderCart() {
   };
 
   document.getElementById('placeOrder').onclick = async () => {
-  if (cart.length === 0) {
-    alert("Cart is empty");
-    return;
-  }
+    if (cart.length === 0) {
+      showToast('Your cart is empty!');
+      return;
+    }
 
-  try {
-    const res = await fetch("http://localhost:3000/order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
+    try {
+      const orderData = {
         items: cart,
-        total: cartTotal()
-      })
-    });
+        total: finalTotal
+      };
 
-    await res.json();
+      const response = await fetch('http://localhost:3000/api/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData)
+      });
 
-    showToast("Order placed successfully! 🎉");
-
-    clearCart();
-    appliedCode = null;
-    promoDiscount = 0;
-
-    setTimeout(() => renderCart(), 300);
-
-  } catch (err) {
-    console.log(err);
-    alert("Error placing order");
-  }
-};
+      if (response.ok) {
+        showToast('Order placed successfully! 🎉');
+        clearCart(); appliedCode = null; promoDiscount = 0;
+        setTimeout(() => renderCart(), 300);
+      } else {
+        showToast('Failed to place order. Please try again.');
+      }
+    } catch (err) {
+      console.error('Order error:', err);
+      showToast('Error connecting to server. Please try again.');
+    }
+  };
+}
 
 // ── Wishlist Page ─────────────────────────────────────────────────
 function renderWishlist() {
@@ -1047,6 +1018,39 @@ document.getElementById('menuToggle').onclick = () => {
 };
 document.querySelectorAll('.mob-link').forEach(l => l.onclick = () => {
   document.getElementById('mobileMenu').style.display = 'none';
+});
+
+// ── Newsletter Subscription ────────────────────────────────────────
+document.addEventListener('click', async (e) => {
+  if (e.target.classList.contains('newsletter-btn')) {
+    e.preventDefault();
+    const form = e.target.closest('.newsletter-form');
+    const emailInput = form.querySelector('.newsletter-input');
+    const email = emailInput.value.trim();
+
+    if (!email || !email.includes('@')) {
+      showToast('Please enter a valid email address');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:3000/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      if (response.ok) {
+        showToast('Subscribed successfully! 🎉');
+        emailInput.value = '';
+      } else {
+        showToast('Failed to subscribe. Please try again.');
+      }
+    } catch (err) {
+      console.error('Subscribe error:', err);
+      showToast('Error connecting to server.');
+    }
+  }
 });
 
 updateBadges();
